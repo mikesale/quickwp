@@ -1,0 +1,47 @@
+version: "3"
+services:
+    wordpress:
+        image: visiblevc/wordpress
+
+        # required for mounting bindfs
+        cap_add:
+            - SYS_ADMIN
+        devices:
+            - /dev/fuse
+        # required on certain cloud hosts
+        security_opt:
+            - apparmor:unconfined
+
+        ports:
+            - 8080:80
+            - 443:443
+        volumes:
+            - ./data:/data
+            - ./scripts:/docker-entrypoint-initwp.d
+            - ./app:/app
+            - ./plugins:/home/admin/plugins
+        environment:
+            DB_NAME: wordpress
+            DB_PASS: root
+            PLUGINS: >-
+                kt-tinymce-color-grid
+                code-snippets
+                easy-theme-and-plugin-upgrades
+                simple-css
+
+    db:
+        image: mariadb:10 # or mysql:5.7
+        volumes:
+            - data:/var/lib/mysql
+        ports:
+            - "9001:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - 22222:80
+
+volumes:
+    data:
