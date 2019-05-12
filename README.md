@@ -27,15 +27,19 @@ It typically takes a minute or two to spin up everything depending on your machi
 ## Access 
 
 WP User: root
+
 WP Password: root
 
 DB Password: root
+
 DB Connection Port: 9001
 
 PhpMyAdmin Port: 22222
 
 Finally access the site at:
 http://localhost:8080
+
+### Connect into the container
 
 To get a command line in the container:
 
@@ -50,6 +54,5 @@ The ./plugins directory is where I put my local plugin zip files I want to insta
 `wp plugin install /home/admin/plugins/myplugin.zip`
 
 You can import a DB like this:
-
 
 `docker-compose exec wordpress /bin/bash "wp db import $(find /data/*.sql | head -n 1) --allow-root"`
