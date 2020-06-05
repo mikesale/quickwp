@@ -24,6 +24,9 @@ You can see the status of the container with this command:
 
 It typically takes a minute or two to spin up everything depending on your machine and your internet connection.
 
+Login: http://localhost:8080/login
+Set your theme under appearance in the admin UI or via wp-cli (see below).
+
 ## Access 
 
 WP User: root
@@ -36,8 +39,8 @@ DB Connection Port: 9001
 
 PhpMyAdmin Port: 22222
 
-Finally access the site at:
-http://localhost:8080
+Login:
+http://localhost:8080/login
 
 ### Connect into the container
 
@@ -49,7 +52,7 @@ WP-CLI is installed and you can run all the standard commands on a running conta
 
 The ./app directory contains your WP install. You can copy files in after starting the container, etc. using your normal host OS/File manager, etc.
 
-The ./plugins directory is where I put my local plugin zip files I want to install for this project. I can install them with the following command on a bash command line as noted above:
+The ./plugins directory is where I put my local plugin zip files I want to install for this project. I can install them with the following command on a bash command line while connected to the container as noted above:
 
 `wp plugin install /home/admin/plugins/myplugin.zip`
 
